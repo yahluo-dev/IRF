@@ -1952,9 +1952,6 @@ if (!paramset.HTMLoff)
   fprintf(stderr,"\nFreeing Memory...");
   fflush(stderr);
 
-  // There is some memory corruption somewhere in the program that crashes the program during memory release 
-  // so we comment for now
-  /*
   sfree(S[0]); 
   sfree(S);
   sfree(Bandcenter);
@@ -1975,13 +1972,17 @@ if (!paramset.HTMLoff)
     sfree(Center3[g]);
     sfree(Tuplehash[g]);
     sfree(History[g]);
-    sfree(RCcodes);
+    for (int j=0;j<four_to_the[Tuplesize[g]]; j++)
+    {
+        sfree(RCcodesSimilar[g][j]);
+    }
+    sfree(RCcodesSimilar[g]);
   }
+  sfree(RCcodes);
   sfree(Index);
   sfree(SM);
   sfree(Complement);
   sfree(Complementascii);
-*/
   /* finish message */
   fprintf(stderr,"\nDone\n\n");
 
